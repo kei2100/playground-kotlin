@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: spring
+
+management:
+  endpoint:
+    health:
+      # http://{host}:{port}/actuator/health ?details?????????????
+      show-details: always
