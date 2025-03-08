@@ -41,6 +41,7 @@ import org.springframework.stereotype.Component
 // ```
 @Component
 class CustomHealthIndicator : HealthIndicator {
+
     override fun health(): Health {
 //        return Health.down()
 //            .withDetail("errorReason", "Something went wrong")
