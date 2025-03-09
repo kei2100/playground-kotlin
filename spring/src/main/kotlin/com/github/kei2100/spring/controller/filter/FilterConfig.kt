@@ -33,7 +33,7 @@ class PrioritizedFilter : Filter {
     }
 }
 
-// @Bean で指定した順番に提供される
+// @Bean で指定した順番に適用される
 class FirstFilter : Filter {
     override fun doFilter(req: ServletRequest, res: ServletResponse, chain: FilterChain) {
         (res as? HttpServletResponse)?.let {
@@ -43,7 +43,7 @@ class FirstFilter : Filter {
     }
 }
 
-// @Bean で指定した順番に提供される
+// @Bean で指定した順番に適用される
 class SecondFilter : Filter {
     override fun doFilter(req: ServletRequest, res: ServletResponse, chain: FilterChain) {
         (res as? HttpServletResponse)?.let {
