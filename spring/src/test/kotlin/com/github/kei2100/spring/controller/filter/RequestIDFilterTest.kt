@@ -8,7 +8,7 @@ import org.springframework.test.web.servlet.get
 import java.util.*
 
 @WebMvcTest
-class HeaderTest {
+class RequestIDFilterTest {
     @Autowired
     private lateinit var mockMvc: MockMvc
 
