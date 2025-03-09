@@ -34,6 +34,8 @@ class PrioritizedFilter : Filter {
 }
 
 // @Bean で指定した順番に適用される
+// ちなみに @WebMvcTest では @Bean で指定したリソースは登録されない状態でテストが走るので、
+// @SpringBootTest でテストする必要がある
 class FirstFilter : Filter {
     override fun doFilter(req: ServletRequest, res: ServletResponse, chain: FilterChain) {
         (res as? HttpServletResponse)?.let {
@@ -44,6 +46,8 @@ class FirstFilter : Filter {
 }
 
 // @Bean で指定した順番に適用される
+// ちなみに @WebMvcTest では @Bean で指定したリソースは登録されない状態でテストが走るので、
+// @SpringBootTest でテストする必要がある
 class SecondFilter : Filter {
     override fun doFilter(req: ServletRequest, res: ServletResponse, chain: FilterChain) {
         (res as? HttpServletResponse)?.let {
