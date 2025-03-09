@@ -1,4 +1,4 @@
-package com.example.spring
+package com.github.kei2100.spring
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest

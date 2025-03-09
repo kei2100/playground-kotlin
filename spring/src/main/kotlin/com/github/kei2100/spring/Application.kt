@@ -1,4 +1,4 @@
-package com.example.spring
+package com.github.kei2100.spring
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

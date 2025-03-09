@@ -1,4 +1,4 @@
-package com.example.spring.controller
+package com.github.kei2100.spring.controller
 
 import org.springframework.web.bind.annotation.*
 

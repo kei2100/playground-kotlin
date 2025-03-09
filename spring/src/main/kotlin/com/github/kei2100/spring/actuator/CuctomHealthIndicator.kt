@@ -1,4 +1,4 @@
-package com.example.spring.actuator
+package com.github.kei2100.spring.actuator
 
 import org.springframework.boot.actuate.health.Health
 import org.springframework.boot.actuate.health.HealthIndicator
