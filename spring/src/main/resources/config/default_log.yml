@@ -1,1 +1,6 @@
-# default log config
+logging:
+  pattern:
+    # デフォルトのログフォーマット以下を追加
+    # * %kvp ログのキーバリューペアを出力
+    # * %X MDC を出力
+    console: "%clr(%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m %kvp %X%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"

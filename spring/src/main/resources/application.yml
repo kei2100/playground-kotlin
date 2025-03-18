@@ -5,6 +5,16 @@ spring:
     import: |
       config/${LOG_CONFIG:default_log}.yml
 
+# tomcat のアクセスログを標準出力する設定
+#server:
+#  tomcat:
+#    accesslog:
+#      enabled: true
+#      directory: /dev
+#      prefix: stdout
+#      suffix: ""
+#      file-date-format: ""
+
 management:
   endpoint:
     health:

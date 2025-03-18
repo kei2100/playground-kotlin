@@ -20,6 +20,16 @@ class FilterConfig {
     fun secondFilter(): Filter {
         return SecondFilter()
     }
+
+    @Bean
+    fun requestIDFilter(): Filter {
+        return RequestIDFilter()
+    }
+
+    @Bean
+    fun requestLogFilter(): Filter {
+        return RequestLogFilter()
+    }
 }
 
 // @Component で指定したフィルターが優先される
