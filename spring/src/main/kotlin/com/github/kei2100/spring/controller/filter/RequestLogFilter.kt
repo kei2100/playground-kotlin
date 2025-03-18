@@ -1,5 +1,6 @@
 package com.github.kei2100.spring.controller.filter
 
+import jakarta.annotation.Resource
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
@@ -9,11 +10,13 @@ import org.springframework.web.filter.OncePerRequestFilter
 import kotlin.system.measureTimeMillis
 
 class RequestLogFilter : OncePerRequestFilter() {
+    @Resource
+    lateinit var requestID: RequestID
 
     private val log = LoggerFactory.getLogger(RequestLogFilter::class.java)
 
     private val contexts = mapOf(
-        "request_id" to { RequestContext.requestID },
+        "request_id" to { requestID.id },
     )
 
     override fun doFilterInternal(req: HttpServletRequest, res: HttpServletResponse, chain: FilterChain) {
