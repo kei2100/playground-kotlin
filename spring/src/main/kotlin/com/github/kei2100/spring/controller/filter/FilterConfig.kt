@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.stereotype.Component
+import org.springframework.web.filter.ForwardedHeaderFilter
 
 @Configuration
 class FilterConfig {
@@ -22,13 +23,18 @@ class FilterConfig {
     }
 
     @Bean
-    fun requestIDFilter(): Filter {
-        return RequestIDFilter()
+    fun forwardedHeaderFilter(): Filter {
+        return ForwardedHeaderFilter()
     }
 
     @Bean
-    fun requestLogFilter(): Filter {
-        return RequestLogFilter()
+    fun correlationIdFilter(): Filter {
+        return CorrelationIdFilter()
+    }
+
+    @Bean
+    fun accessLogFilter(): Filter {
+        return AccessLogFilter()
     }
 }
 
