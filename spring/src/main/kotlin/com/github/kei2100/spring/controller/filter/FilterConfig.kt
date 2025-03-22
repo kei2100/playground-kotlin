@@ -13,29 +13,19 @@ import org.springframework.web.filter.ForwardedHeaderFilter
 @Configuration
 class FilterConfig {
     @Bean
-    fun firstFilter(): Filter {
-        return FirstFilter()
-    }
+    fun firstFilter() = FirstFilter()
 
     @Bean
-    fun secondFilter(): Filter {
-        return SecondFilter()
-    }
+    fun secondFilter() = SecondFilter()
 
     @Bean
-    fun forwardedHeaderFilter(): Filter {
-        return ForwardedHeaderFilter()
-    }
+    fun forwardedHeaderFilter() = ForwardedHeaderFilter()
 
     @Bean
-    fun correlationIdFilter(): Filter {
-        return CorrelationIdFilter()
-    }
+    fun correlationIdFilter() = CorrelationIdFilter()
 
     @Bean
-    fun accessLogFilter(): Filter {
-        return AccessLogFilter()
-    }
+    fun accessLogFilter() = AccessLogFilter()
 }
 
 // @Component で指定したフィルターが優先される

@@ -8,26 +8,26 @@ import org.springframework.test.web.servlet.get
 import java.util.*
 
 @WebMvcTest
-class RequestIDFilterTest {
+class CorrelationIdFilterTest {
     @Autowired
     private lateinit var mockMvc: MockMvc
 
     @Test
-    fun `レスポンスヘッダーにX-Request-IDが含まれること`() {
+    fun `レスポンスヘッダーに X-Correlation-Id が含まれること`() {
         mockMvc.get("/")
             .andExpect {
-                header { exists("X-Request-ID") }  // ヘッダーが存在することを確認
+                header { exists("X-Correlation-Id") }  // ヘッダーが存在することを確認
             }
     }
 
     @Test
-    fun `レスポンスヘッダーにリクエストヘッダーで指定した値のX-Request-IDが含まれること`() {
+    fun `レスポンスヘッダーにリクエストヘッダーで指定した値の X-Correlation-Id が含まれること`() {
         val rid = UUID.randomUUID().toString()
         mockMvc.get("/") {
-            header("X-Request-ID", rid)
+            header("X-Correlation-Id", rid)
         }
             .andExpect {
-                header { string("X-Request-ID", rid) }
+                header { string("X-Correlation-Id", rid) }
             }
     }
 }

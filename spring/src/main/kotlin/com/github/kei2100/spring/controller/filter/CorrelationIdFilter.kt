@@ -7,7 +7,8 @@ import org.slf4j.MDC
 import org.springframework.web.filter.OncePerRequestFilter
 import java.util.*
 
-private const val X_CORRELATION_ID = "x-correlation-id"
+private const val CORRELATION_ID_HEADER_KEY = "X-Correlation-Id"
+private const val CORRELATION_ID_MDC_KEY = "correlation_id"
 
 /**
  * CorrelationIdFilter は、リクエストヘッダーから x-correlation-id を取得または生成し、
@@ -16,16 +17,16 @@ private const val X_CORRELATION_ID = "x-correlation-id"
 class CorrelationIdFilter : OncePerRequestFilter() {
     override fun doFilterInternal(req: HttpServletRequest, res: HttpServletResponse, chain: FilterChain) {
         val correlationId = getOrGenerateCorrelationId(req)
-        res.setHeader(X_CORRELATION_ID, correlationId)
+        res.setHeader(CORRELATION_ID_HEADER_KEY, correlationId)
         try {
-            MDC.put(X_CORRELATION_ID, correlationId)
+            MDC.put(CORRELATION_ID_MDC_KEY, correlationId)
             chain.doFilter(req, res)
         } finally {
-            MDC.remove(X_CORRELATION_ID)
+            MDC.remove(CORRELATION_ID_MDC_KEY)
         }
     }
 
     private fun getOrGenerateCorrelationId(req: HttpServletRequest): String {
-        return req.getHeader(X_CORRELATION_ID) ?: UUID.randomUUID().toString()
+        return req.getHeader(CORRELATION_ID_HEADER_KEY) ?: UUID.randomUUID().toString()
     }
 }
