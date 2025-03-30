@@ -28,4 +28,20 @@ class MyAsyncHandlerInterceptor : AsyncHandlerInterceptor {
     override fun afterCompletion(req: HttpServletRequest, res: HttpServletResponse, handler: Any, ex: Exception?) {
         logger.info("afterCompletion")
     }
+
+    // Controller 関数が直接 CompletableFuture などを返したりする場合、この関数が呼ばれる。
+    // CompletableFuture が完了したあと、preHandle, postHandle, afterCompletion が呼ばれる。
+    //
+    // スレッドのイメージ
+    // 1. receive request (thread-1)
+    // 2. preHandle (thread-1)
+    // 3. async task started (async-task-1)
+    // 4. afterConcurrentHandlingStarted (thread-1)
+    // 5. async task ended (async-task-1)
+    // 6. preHandle (thread-2) // 別スレッド
+    // 7. postHandle (thread-2) // 別スレッド
+    // 8. afterCompletion (thread-2) // 別スレッド
+    override fun afterConcurrentHandlingStarted(req: HttpServletRequest, res: HttpServletResponse, handler: Any) {
+        logger.info("afterConcurrentHandlingStarted")
+    }
 }
