@@ -33,14 +33,16 @@ class MyAsyncHandlerInterceptor : AsyncHandlerInterceptor {
     // CompletableFuture が完了したあと、preHandle, postHandle, afterCompletion が呼ばれる。
     //
     // スレッドのイメージ
-    // 1. receive request (thread-1)
-    // 2. preHandle (thread-1)
-    // 3. async task started (async-task-1)
-    // 4. afterConcurrentHandlingStarted (thread-1)
-    // 5. async task ended (async-task-1)
-    // 6. preHandle (thread-2) // 別スレッド
-    // 7. postHandle (thread-2) // 別スレッド
-    // 8. afterCompletion (thread-2) // 別スレッド
+    // - receive request (thread-1)
+    // - doFilter started (thread-1)
+    // - preHandle (thread-1)
+    // - async task started (async-task-1)
+    // - afterConcurrentHandlingStarted (thread-1)
+    // - doFilter ended (thread-1)
+    // - async task ended (async-task-1)
+    // - preHandle (thread-2) // 別スレッド
+    // - postHandle (thread-2) // 別スレッド
+    // - afterCompletion (thread-2) // 別スレッド
     override fun afterConcurrentHandlingStarted(req: HttpServletRequest, res: HttpServletResponse, handler: Any) {
         logger.info("afterConcurrentHandlingStarted")
     }
